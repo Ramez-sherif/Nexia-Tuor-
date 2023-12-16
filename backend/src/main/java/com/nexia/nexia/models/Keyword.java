@@ -5,7 +5,10 @@ import java.util.List;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,7 +24,7 @@ public class Keyword {
     private Long id;
 
     private String keyword_name;
-
+    @JsonIgnore
     @ManyToOne(targetEntity = Lesson.class, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "lesson_id", referencedColumnName = "id")

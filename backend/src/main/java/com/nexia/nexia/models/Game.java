@@ -21,12 +21,12 @@ public class Game {
     @ManyToOne(targetEntity = DyslexiaType.class, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "dyslexia_type_id", referencedColumnName = "id")
-    private DyslexiaType dyslexia_type;
+    private DyslexiaType dyslexiaType;
 
     public Game(Long id, String game_name, DyslexiaType dyslexia_type) {
         this.id = id;
         this.game_name = game_name;
-        this.dyslexia_type = dyslexia_type;
+        this.dyslexiaType = dyslexia_type;
     }
 
     public Game() {
@@ -49,10 +49,10 @@ public class Game {
     }
 
     public DyslexiaType getDyslexia_type() {
-        return dyslexia_type;
+        return dyslexiaType;
     }
 
     public void setDyslexia_type(DyslexiaType dyslexia_type) {
-        this.dyslexia_type = dyslexia_type;
+        this.dyslexiaType = dyslexia_type;
     }
 }
