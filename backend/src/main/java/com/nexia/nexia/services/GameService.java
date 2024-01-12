@@ -24,18 +24,23 @@ public class GameService {
     @Autowired
     private LessonsService lessonsService;
     @Autowired
+    private LessonJsonService lessonJsonService;
+    @Autowired
     private GameRepository gameRepository;
     @Autowired
     private DyslexiaTypeRepository dyslexiaTypeRepository;
 
-    public Map<String, Object> getGamesForLesson(Long lessonId, Long userId) {
+    public Map<String, Object> getGamesForLesson(String LessonName, Long userId) {
         // 0.get user
         User user = userService.getUserById(userId);
 
         // get lesson
-        Lesson lesson = lessonsService.getLessonById(lessonId);
+        // Lesson lesson = lessonsService.getLessonById(lessonId);
         // 1. get all keywords for lesson
-        List<Keyword> keywords = keywordService.getAllKeywordsForLessonById(lessonId);
+        // List<Keyword> keywords =
+        // keywordService.getAllKeywordsForLessonById(lessonId);
+
+        Map<String, Map<String, String>> lessonDetails = lessonJsonService.getLessonKeywords(LessonName);
 
         // 2. get user dyslexia types
         List<DyslexiaType> dyslexiaTypes = user.getDyslexia_types();
@@ -53,9 +58,9 @@ public class GameService {
             }
         }
         Map<String, Object> jsonResponse = new HashMap<>();
-        jsonResponse.put("lesson_id", lessonId); // Assuming lessonId is provided
-        jsonResponse.put("lesson_name", lesson.getLesson_name()); // Replace with actual lesson name retrieval logic
-        jsonResponse.put("keywords", keywords);
+
+        jsonResponse.put("lesson_name", LessonName); // Replace with actual lesson name retrieval logic
+        jsonResponse.put("keywords", lessonDetails);
         jsonResponse.put("games", gamesList);
 
         return jsonResponse;
