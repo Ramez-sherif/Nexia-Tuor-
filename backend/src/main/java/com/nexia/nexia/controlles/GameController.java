@@ -27,12 +27,12 @@ public class GameController {
     private KeywordService keywordService;
 
     // TODO: get all games for specific lesson and specific dyslexia type
-    @GetMapping("/{lessonId}")
-    public ResponseEntity getGamesForLesson(@PathVariable("lessonId") Long lessonId,
+    @GetMapping("/{lessonName}")
+    public ResponseEntity getGamesForLesson(@PathVariable String lessonName,
             @RequestBody Map<String, String> body) {
         String id = body.get("id");
         long userID = Long.parseLong(id);
-        Object jsonResponse = gameService.getGamesForLesson(lessonId, userID);
+        Object jsonResponse = gameService.getGamesForLesson(lessonName, userID);
         if (jsonResponse != null) {
             return ResponseEntity.ok(jsonResponse);
         } else {

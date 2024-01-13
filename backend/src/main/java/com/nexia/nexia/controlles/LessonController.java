@@ -19,15 +19,16 @@ public class LessonController {
     private LessonsService lessonsService;
 
     // TODO: add a method to get all lessons
-    @GetMapping("/getAllLessons")
-    public ResponseEntity getAllLessons() {
-        Object jsonResponse = lessonsService.getAllLessons();
-        if (jsonResponse != null) {
-            return ResponseEntity.ok(jsonResponse);
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to retrieve data");
-        }
+    // @GetMapping("/getAllLessons")
+    // public ResponseEntity getAllLessons() {
+    // Object jsonResponse = lessonsService.getAllLessons();
+    // if (jsonResponse != null) {
+    // return ResponseEntity.ok(jsonResponse);
+    // } else {
+    // return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed
+    // to retrieve data");
+    // }
 
-    }
+    // }
 
 }
