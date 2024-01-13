@@ -1,12 +1,11 @@
 package com.nexia.nexia.models;
 
 import java.util.List;
-import java.util.Map;
 
 public class LessonJson {
     private String lessonName;
 
-    private Map<String, Map<String, String>> keywords;
+    private List<Keyword> keywords;
 
     public LessonJson() {
     }
@@ -19,11 +18,11 @@ public class LessonJson {
         this.lessonName = lessonName;
     }
 
-    public Map<String, Map<String, String>> getKeywords() {
+    public List<Keyword> getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(Map<String, Map<String, String>> keywords) {
+    public void setKeywords(List<Keyword> keywords) {
         this.keywords = keywords;
     }
 

@@ -1,1 +1,33 @@
-[{"lessonName":"Example Lesson","keywords":{"topic1":{"key1":"value1","key2":"value2"},"topic2":{"key3":"value3","key4":"value4"}}},{"lessonName":"Example Lesson 2","keywords":{"topic1":{"key1":"value1","key2":"value2"},"topic2":{"key3":"value3","key4":"value4"}}}]
+[
+    {
+        "lessonName": "Math",
+        "keywords": [
+            {
+                "keyword_name": "topic1",
+                "images": [
+                    {
+                        "image_url": "definition1",
+                        "id": "123456"
+                    },
+                    {
+                        "image_url": "definition1",
+                        "id": "84r736t78678t7"
+                    }
+                ]
+            },
+            {
+                "keyword_name": "topic2",
+                "images": [
+                    {
+                        "image_url": "definition22",
+                        "id": "123klnklvnv456"
+                    },
+                    {
+                        "image_url": "definition144",
+                        "id": "84rljndvdjvn736t78678t7"
+                    }
+                ]
+            }
+        ]
+    }
+]

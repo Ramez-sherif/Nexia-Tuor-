@@ -5,11 +5,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.nexia.nexia.models.Image;
+import com.nexia.nexia.models.Keyword;
 import com.nexia.nexia.models.LessonJson;
 import com.nexia.nexia.services.LessonJsonService;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/lessons/json")
@@ -24,15 +28,58 @@ public class LessonJsonController {
         return new ResponseEntity<>(lessons, HttpStatus.OK);
     }
 
+    @PostMapping("/saveLesson")
+    public ResponseEntity<LessonJson> saveLesson(@RequestBody LessonJson lesson) {
+        try {
+            lessonService.saveLesson(lesson, false);
+            return new ResponseEntity<>(lesson, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // @PostMapping("/save-with-images")
+    // public ResponseEntity<List<LessonJson>> saveLessonsWithImages(@RequestBody
+    // LessonWithImagesRequest request) {
+    // try {
+    // lessonService.saveLessonWithImages(request.getLessonJson(),
+    // request.getImageUrls());
+    // return new ResponseEntity<>(List.of(request.getLessonJson()), HttpStatus.OK);
+    // } catch (Exception e) {
+    // return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
+    // }
+
+    @GetMapping("/{lessonName}/{keyword}/images")
+    public ResponseEntity<List<Image>> getLessonImages(@PathVariable String lessonName, @PathVariable String keyword) {
+        try {
+            List<Image> images = lessonService.getLessonImages(lessonName, keyword);
+            return new ResponseEntity<>(images, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/get")
     public ResponseEntity<List<LessonJson>> getLessons() {
         List<LessonJson> lessons = lessonService.getLessons();
         return new ResponseEntity<>(lessons, HttpStatus.OK);
     }
 
+    @GetMapping("/names")
+    public ResponseEntity<List<String>> getLessonNames() {
+        try {
+            List<String> lessonNames = lessonService.getLessonNames();
+            return new ResponseEntity<>(lessonNames, HttpStatus.OK);
+        } catch (Exception e) {
+            // Log the exception and return an error response
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/{lessonName}/keywords")
-    public ResponseEntity<Map<String, Map<String, String>>> getLessonKeywords(@PathVariable String lessonName) {
-        Map<String, Map<String, String>> keywords = lessonService.getLessonKeywords(lessonName);
+    public ResponseEntity<List<Keyword>> getLessonKeywords(@PathVariable String lessonName) {
+        List<Keyword> keywords = lessonService.getLessonByName(lessonName).getKeywords();
         return new ResponseEntity<>(keywords, HttpStatus.OK);
     }
 

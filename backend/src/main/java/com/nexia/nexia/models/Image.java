@@ -1,19 +1,21 @@
 package com.nexia.nexia.models;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
 public class Image {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 
     private String image_url;
 
-    public Image(Long id, String image_url) {
+    public Image(String id, String image_url) {
         this.id = id;
         this.image_url = image_url;
     }
@@ -21,11 +23,11 @@ public class Image {
     public Image() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
