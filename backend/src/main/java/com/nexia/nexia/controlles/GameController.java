@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.*;
@@ -27,7 +28,7 @@ public class GameController {
     private KeywordService keywordService;
 
     // TODO: get all games for specific lesson and specific dyslexia type
-    @GetMapping("/{lessonName}")
+    @PostMapping("/{lessonName}")
     public ResponseEntity getGamesForLesson(@PathVariable String lessonName,
             @RequestBody Map<String, String> body) {
         String id = body.get("id");
