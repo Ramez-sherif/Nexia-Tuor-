@@ -10,10 +10,9 @@ import com.nexia.nexia.models.Keyword;
 import com.nexia.nexia.models.LessonJson;
 import com.nexia.nexia.services.LessonJsonService;
 
-import java.io.IOException;
+
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+
 
 @RestController
 @RequestMapping("/lessons/json")
